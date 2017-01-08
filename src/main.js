@@ -1,14 +1,26 @@
 import * as PIXI from 'pixi.js';
 import MiniSignal from 'mini-signals';
 
-export default class Main{
+
+class TileMapRenderer extends PIXI.ObjectRenderer{
+  constructor(renderer) {
+    super(renderer)
+  }
+}
+
+export default class Main extends PIXI.Container{
 
   loader = null;
 
   constructor(){
+    super();
     document.addEventListener("DOMContentLoaded", e=> {
       console.log("DOM loaded...");
       this.init();
+      this.renderer = PIXI.autoDetectRenderer(window.innerWidth, window.innerHeight);
+      this.renderer.backgroundColor = 0x333333;
+      document.body.appendChild(this.renderer.view);
+      this.renderer.render(this);
     });
   }
 
@@ -84,14 +96,14 @@ export default class Main{
     let rotation, flipped, flippedVal, gid;
 
     for(let layer of layers){
-      
-      for (var t = 0, len = curl.data.length; t < len; t++){
-          rotation = 0;
-          flipped = false;
-          gid = layer.data[t];
+      console.log(layer);
+      // for (var t = 0, len = curl.data.length; t < len; t++){
+      //     rotation = 0;
+      //     flipped = false;
+      //     gid = layer.data[t];
 
 
-      }
+      // }
     }
   }
 
